@@ -1,0 +1,43 @@
+{
+  "name": "product-comparison",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "7.14.6",
+    "bootstrap": "^4.1.1",
+    "react": "^16.8.6",
+    "react-dev-utils": "^3.0.2",
+    "react-dom": "^16.8.6",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "4.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "test-part-1": "npm test ProductList.search.name.test.js",
+    "test-part-2": "npm test ProductList.search.price.test.js",
+    "test-part-3": "npm test Home.product.comparison.test.js",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@sheerun/mutationobserver-shim": "^0.3.3",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "babel-eslint": "^10.1.0",
+    "prettier": "2.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
