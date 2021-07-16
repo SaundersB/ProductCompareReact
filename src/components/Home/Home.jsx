@@ -1,58 +1,51 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { CompareTable, ProductList } from '..'
 import results from '../../data/products.json'
 
-class Home extends Component {
-  constructor() {
-    super()
-    this.state = {
-      nameSearch: '',
-      products: results.products
-    }
+const Home = () => {
+  const [nameSearch, setNameSearch] = useState('');
+  const [products, setProducts] = useState(results.products);
+
+  const compareProducts = products.filter(
+    product => product.compare
+  )
+  const handleChange = event => {
+    setNameSearch(event.target.value)
   }
 
-  render() {
-    const compareProducts = this.state.products.filter(
-      product => product.compare
+  const compare = id => {
+    setProducts(
+      products.map(product =>
+        product.id === id
+          ? { ...product, compare: !product.compare }
+          : product
+      )
     )
-    const handleChange = event => {
-      this.setState({ nameSearch: event.target.value })
-    }
+  }
 
-    const compare = id => {
-      this.setState({
-        products: this.state.products.map(product =>
-          product.id === id
-            ? { ...product, compare: !product.compare }
-            : product
-        )
-      })
-    }
-
-    return (
-      <div className="home mt-5">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="mb-3">Compare Products</h2>
-            <input
-              type="text"
-              placeholder="Search by name"
-              value={this.state.nameSearch}
-              onChange={e => handleChange(e)}
-            />
-          </div>
+  return (
+    <div className="home mt-5">
+      <div className="row">
+        <div className="col-12">
+          <h2 className="mb-3">Compare Products</h2>
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={nameSearch}
+            onChange={e => handleChange(e)}
+          />
         </div>
-        <ProductList
-          products={this.state.products}
-          nameSearch={this.state.nameSearch}
-          compare={compare}
-        />
-        {compareProducts.length >= 1 && (
-          <CompareTable products={compareProducts} />
-        )}
       </div>
-    )
-  }
-}
+      <ProductList
+        products={products}
+        nameSearch={nameSearch}
+        compare={compare}
+      />
+      {compareProducts.length >= 1 && (
+        <CompareTable products={compareProducts} />
+      )}
+    </div>
+  )
+};
 
 export default Home
